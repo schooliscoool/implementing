@@ -1,0 +1,33 @@
+.main{
+    display: grid;
+    grid-template-columns: 1fr 9fr;
+    gap: 2%;
+}
+
+.quesbut{/*
+    height: 30px;
+    width: 30px;*/
+    /*  margin: 10%;*/
+    background-color: rgb(252, 253, 255);
+    height: 1cm;
+}
+
+.buttdiv{
+    display: grid;
+    grid-template-columns: 1cm 1cm 1cm 1cm ;
+    grid-template-rows: 1cm 1cm 1cm 1cm ;
+    background-color: #0E3A42;
+}
+
+header{
+    margin-bottom: 1%;
+    font-size: 300%;
+    text-align: center;
+}
+
+body{
+    font-family: 'Roboto Slab', serif;
+    background-color: #0E3A42;
+    color: rgb(252, 253, 255);
+    color: rgb(238, 167, 61);
+}

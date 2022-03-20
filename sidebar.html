@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sidebar.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <header>HELLO</header>
+    <div id="hello"></div>
+    
+    
+    <div class="main">
+        <div class="buttdiv">
+                <button id="0"onclick="one()" class="quesbut">1</button>
+                <button id="1" onclick="two()" class="quesbut">2</button>
+                <button id="2" onclick="three()" class="quesbut">3</button>
+                <button id="3" onclick="four()" class="quesbut">4</button>
+                <button id="4" onclick="five()" class="quesbut">5</button>
+                <button id="5" onclick="six()" class="quesbut">6</button>
+                <button id="6" onclick="seven()" class="quesbut">7</button>
+                <button id="7" onclick="eight()" class="quesbut">8</button>
+                <button id="8" onclick="nine()" class="quesbut">9</button>
+                <button id="9" onclick="ten()" class="quesbut">10</button>
+                <button id="10" onclick="back()" class="quesbut">11</button>
+                <button id="11" onclick="twelve()" class="quesbut">12</button>
+        </div>
+        <div>
+            
+            <div id="question">
+                Question will be displayed here
+            </div>
+            <div id="opts">
+                opts will be displayed here
+            </div>
+            <br><br><br>
+            <span id="flag-span">
+                <button onclick="flag()" id="flag">Flag</button>
+            </span>
+            <button onclick="previous()">previous</button>
+            <button onclick="next() /*checkiflastquestion()*/">next</button>
+
+        </div>  
+    
+        
+    </div>
+    <script>
+        var flag_0 = false
+        var flag_2 = false
+        var flag_1 = false
+        var flag_3 = false
+        var flag_4 = false
+        var flag_5 = false
+        var flag_6 = false
+        var flag_7 = false
+        var flag_8 = false
+        var flag_9 = false
+        //restoring unflag
+      
+        //changes the flagged boolean to false if the question is unflagged
+        function change_unflagged_bool_2(){
+            if (currenquestion == 0){
+                flag_0 = false
+            }else if (currenquestion == 1){
+                flag_1 = false
+            }else if (currenquestion == 2){
+                flag_2 = false
+            }else if (currenquestion == 3){
+                flag_3 = false
+            }else if (currenquestion == 4){
+                flag_4 = false
+            }else if (currenquestion == 5){
+                flag_5 = false
+            }else if (currenquestion == 6){
+                flag_6 = false
+            }else if (currenquestion == 7){
+                flag_7 = false
+            }else if (currenquestion == 8){
+                flag_8 = false
+            }else if (currenquestion == 9){
+                flag_9 = false
+            }
+        }
+        
+        //changes the flagged boolean to true if the question is flagged
+        function change_unflagged_bool_1(){
+            if (currenquestion == 0){
+                flag_0 = true
+            }else if (currenquestion == 1){
+                flag_1 = true
+            }else if (currenquestion == 2){
+                flag_2 = true
+            }else if (currenquestion == 3){
+                flag_3 = true
+            }else if (currenquestion == 4){
+                flag_4 = true
+            }else if (currenquestion == 5){
+                flag_5 = true
+            }else if (currenquestion == 6){
+                flag_6 = true
+            }else if (currenquestion == 7){
+                flag_7 = true
+            }else if (currenquestion == 8){
+                flag_8 = true
+            }else if (currenquestion == 9){
+                flag_9 = true
+            }
+        }
+        //declaring the current question as -1 to make sure that the first question index beceomes 0
+        currenquestion = -1
+        //function to go to next question
+        function next() {
+            currenquestion += 1
+            document.getElementById('question').innerHTML = qao[currenquestion].question
+            document.getElementById('opts').innerHTML = qao[currenquestion].opts
+            document.getElementById("flag-span").innerHTML = '<button id="flag">Flag</button>'
+            document.getElementById("flag").setAttribute('onclick', 'flag()')
+            restore_unflag()
+            // //close the shown answer
+            // close_ans()
+            // //removes the image if the question index in greater than 0
+            // images()
+            // //checks if the current question is the last question
+            // checkiflastquestion()
+            // //check if any one option is selected
+            // any_opt_checked()
+            
+        }
+
+
+        //function to change the unflag button if the question is already unflaged
+        function restore_unflag(){
+            if (currenquestion == 0){
+                if (flag_0 == true){
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Un Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'unflag()')
+                }else {
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'flag()')
+                }
+            }else if (currenquestion == 1){
+                if (flag_1 == true){
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Un Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'unflag()')
+                }else {
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'flag()')
+                }
+            }else if (currenquestion == 2){
+                if (flag_2 == true){  
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Un Flag</butt  on>'
+                    document.getElementById("flag").setAttribute('onclick', 'unflag()')  
+                }else {  
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Flag</button>  '
+                    document.getElementById("flag").setAttribute('onclick', 'flag()')  
+                }  
+            }else if (currenquestion == 3){  
+                if (flag_3 == true){  
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Un Flag</butt  on>'
+                    document.getElementById("flag").setAttribute('onclick', 'unflag()')  
+                }else {
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'flag()')
+                }
+            }else if (currenquestion == 4){
+                if (flag_4 == true){
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Un Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'unflag()')
+                }else {
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'flag()')
+                }
+            }else if (currenquestion == 5){
+                if (flag_5 == true){
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Un Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'unflag()')
+                }else {
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'flag()')
+                }
+            }else if (currenquestion == 6){
+                if (flag_6 == true){
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Un Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'unflag()')
+                }else {
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'flag()')
+                }
+            }else if (currenquestion == 7){
+                if (flag_7 == true){
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Un Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'unflag()')
+                }else {
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'flag()')
+                }
+            }else if (currenquestion == 8){
+                if (flag_8 == true){
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Un Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'unflag()')
+                }else {
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'flag()')
+                }
+            }else if (currenquestion == 9){
+                if (flag_9 == true){
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Un Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'unflag()')
+                }else {
+                    document.getElementById("flag-span").innerHTML = '<button id="flag">Flag</button>'
+                    document.getElementById("flag").setAttribute('onclick', 'flag()')
+                }
+            }
+            unflag()
+        }
+
+        //function to go the the previous question
+        function previous(){
+            currenquestion -= 1
+            document.getElementById('question').innerHTML = qao[currenquestion].question
+            document.getElementById('opts').innerHTML = qao[currenquestion].opts
+            restore_unflag()
+        }
+        //declaring variables to see if the opts of the questions are checked
+        var q0 = false
+        var q1 = false
+        var q2 = false
+        var q3 = false
+        var q4 = false
+        var q5 = false
+        var q6 = false
+        var q7 = false
+        var q8 = false
+        var q9 = false
+        //changing background colout to show it is unflagged
+        function unflag(){
+            //declaring the variables for each question to see if the opts are checked
+            
+            //changing current question to string
+            crq = currenquestion.toString()
+            if (q0 == true && crq == 0){
+                document.getElementById(crq).style.backgroundColor = "rgb(0, 200, 0)"
+            }else if (q1 == true && crq == 1){
+                documet.getElementById(crq).style.backgroundColor = "rgb(0, 200, 0)"
+            }else if (q2 == true && crq == 2){
+                document.getElementById(crq).style.backgroundColor = "rgb(0, 200, 0)"
+            }else if (q3 == true && crq == 3){
+                document.getElementById(crq).style.backgroundColor = "rgb(0, 200, 0)"
+            }else if (q4 == true && crq == 4){
+                document.getElementById(crq).style.backgroundColor = "rgb(0, 200, 0)"
+            }else if (q5 == true && crq == 5){
+                document.getElementById(crq).style.backgroundColor = "rgb(0, 200, 0)"
+            }else if (q6 == true && crq == 6){
+                document.getElementById(crq).style.backgroundColor = "rgb(0, 200, 0)"
+            }else if (q7 == true && crq == 7){
+                document.getElementById(crq).style.backgroundColor = "rgb(0, 200, 0)"
+            }else if (q8 == true && crq == 8){
+                document.getElementById(crq).style.backgroundColor = "rgb(0, 200, 0)"
+            }else if (q9 == true && crq == 9){
+                document.getElementById(crq).style.backgroundColor = "rgb(0, 200, 0)"
+            }else{
+                document.getElementById(crq).style.backgroundColor = "rgb(252,253,255)"
+            }
+            document.getElementById("flag-span").innerHTML = '<button id="flag">Flag</button>'
+            document.getElementById("flag").setAttribute('onclick', 'flag()')
+            change_unflagged_bool_2()
+        }
+
+        //changing background colour to show it is flagged
+        function flag(){
+            change_unflagged_bool_1()
+            //changing current question to string
+            crq = currenquestion.toString()
+            document.getElementById(crq).style.backgroundColor = "rgb(255, 166, 0)"
+            document.getElementById("flag-span").innerHTML = '<button id="flag">Un-Flag</button>'
+            document.getElementById("flag").setAttribute('onclick', 'unflag()')
+            // document.getElementById("flag").textContent = "unflag"
+        }
+
+        
+
+        //check if any one option is selected
+        //if opt selected and not flagged, changing background colour to green
+        function any_opt_checked(){
+            //changing current question to string
+            crq = currenquestion.toString()
+            checked_or_not = document.getElementById(crq).style.backgroundColor
+            if (checked_or_not == "rgb(255, 166, 0)"){
+                alert("question is flagged")
+                if (crq == "0"){
+                    q0 = true
+                }else if (crq == "1"){
+                    q1 = true
+                }else if (crq == "2"){
+                    q2 = true
+                }else if (crq == "3"){
+                    q3 = true
+                }else if (crq == "4"){
+                    q4 = true
+                }else if (crq == "5"){
+                    q5 = true
+                }else if (crq == "6"){
+                    q6 = true
+                }else if (crq == "7"){
+                    q7 = true
+                }else if (crq == "8"){
+                    q8 = true
+                }else if (crq == "9"){
+                    q9 = true
+                }
+            }else {
+                document.getElementById(crq).style.backgroundColor = "rgb(0, 200, 0)"
+                if (crq == "0"){
+                    q0 = true
+                }else if (crq == "1"){
+                    q1 = true
+                }else if (crq == "2"){
+                    q2 = true
+                }else if (crq == "3"){
+                    q3 = true
+                }else if (crq == "4"){
+                    q4 = true
+                }else if (crq == "5"){
+                    q5 = true
+                }else if (crq == "6"){
+                    q6 = true
+                }else if (crq == "7"){
+                    q7 = true
+                }else if (crq == "8"){
+                    q8 = true
+                }else if (crq == "9"){
+                    q9 = true
+                }
+            }
+        }
+        //checks if the current question is the last question
+        // function checkiflastquestion() {
+        //     neq = currenquestion + 1
+        //     if (qao[neq].question === 'no more') {
+        //         document.getElementById('pqnq').innerHTML = '<button onclick="previousquestion()" class="pq">Previous</button>'
+        //     } else if (currenquestion > 0 && qao[neq].question !== "no more") {
+        //         document.getElementById('pqnq').innerHTML = '<span><button onclick="previousquestion()" class="pq">Previous</button></span><span><button onclick="nextquestion(),closeimg()" class="nq">next</button></span>'
+        //     }
+        // }
+
+        //go to 1st question via button
+        function one() {
+            currenquestion = 0
+            document.getElementById('question').innerHTML = qao[0].question
+            document.getElementById('opts').innerHTML = qao[0].opts
+            crq = toString(currenquestion)
+            restore_unflag()
+        }
+
+        //go to 2nd question via button
+        function two() {
+            currenquestion = 1
+            document.getElementById('question').innerHTML = qao[1].question
+            document.getElementById('opts').innerHTML = qao[1].opts
+            crq = toString(currenquestion)
+            restore_unflag()
+        }
+
+        // go to 3rd question via button
+        function three(){
+            currenquestion = 2
+            document.getElementById('question').innerHTML = qao[2].question
+            document.getElementById('opts').innerHTML = qao[2].opts
+            crq = toString(currenquestion)
+            restore_unflag()
+        }
+
+        // go to 4th question via button
+        function four(){
+            currenquestion = 3
+            document.getElementById('question').innerHTML = qao[3].question
+            document.getElementById('opts').innerHTML = qao[3].opts
+            crq = toString(currenquestion)
+            restore_unflag()
+        }
+
+        // go to 5th question via button
+        function five(){
+            currenquestion = 4
+            document.getElementById('question').innerHTML = qao[4].question
+            document.getElementById('opts').innerHTML = qao[4].opts
+            crq = toString(currenquestion)
+            restore_unflag()
+        }
+
+        // go to 6th question via button
+        function six(){
+            currenquestion = 5
+            document.getElementById('question').innerHTML = qao[5].question
+            document.getElementById('opts').innerHTML = qao[5].opts
+            crq = toString(currenquestion)
+            restore_unflag()
+        }
+
+        // go to 7th question via button
+        function seven(){
+            currenquestion = 6
+            document.getElementById('question').innerHTML = qao[6].question
+            document.getElementById('opts').innerHTML = qao[6].opts
+            crq = toString(currenquestion)
+            restore_unflag()
+        }
+
+        // go to 8th question via button
+        function eight(){
+            currenquestion = 7
+            document.getElementById('question').innerHTML = qao[7].question
+            document.getElementById('opts').innerHTML = qao[7].opts
+            crq = toString(currenquestion)
+            restore_unflag()
+        }
+
+        // go to 9th question via button
+        function nine(){
+            currenquestion = 8
+            document.getElementById('question').innerHTML = qao[8].question
+            document.getElementById('opts').innerHTML = qao[8].opts
+            crq = toString(currenquestion)
+            restore_unflag()
+        }
+
+        // go to 10th question via button
+        function ten(){
+            currenquestion = 9
+            document.getElementById('question').innerHTML = qao[9].question
+            document.getElementById('opts').innerHTML = qao[9].opts
+            crq = toString(currenquestion)
+            restore_unflag()
+        }
+
+        // go to 11th question via button
+        function back(){
+            document.getElementById('question').innerHTML = "Question will be displayed here"
+            document.getElementById('opts').innerHTML = "opts will be displayed here"
+        }
+        
+
+        // questions
+        var qao = [
+            {
+            "question": "1) The capacity of a tank is 84 litres and it takes 7 hours to fill. If the valve is closed after 4.5 hours, what % of the tank is filled?",
+            "answer": "<br><br>Answer :- a) 64.29%.<br> Solution:- <br> Speed of water = Capacity/Time = 84/7 = 12L/h <br> therefore water filled = 12*4.5 = 54L.<br> percentage filled = (54/84)*100 = 64.29%",
+            "opts": "<span><input name='btn' type='radio' id='but1' onclick='any_opt_checked()' > a) 64.29 &emsp;&emsp;</span><br> <span><input name='btn' type='radio' id='but2' onclick='any_opt_checked()'> b) 63.65% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but3' onclick='any_opt_checked()'> c) 65.80% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but4' onclick='any_opt_checked()'> d) 60.93%<span> "
+        }, {
+            "question": "2) Ramesh is a real estate agent. He bought a land for ₹68741520. The registration fees is 7%, brokerage is 1.5%.  If Ramesh is selling the land for ₹69951520 and recieves a brokerage of 8%, what is his profit/loss %",
+            "answer": "<br><br>Answer :- d) 1.29%.<br> Solution:-  <br> Registration = ₹48,11,906.4 <br> Brokerage = ₹10,31,122.8 <br> Total cost = ₹7,45,84,549.2 <br> <br> Selling price = ₹6,99,51,520 + 55,96,121.6 <br> &emsp;&emsp;&emsp;&emsp;&emsp; = 7,55,47,641.6 <br><br> S.P > C.P, there is profit<br>Profit% = (profit/cp)*100 <br> = (9,63,092.4/7,45,84,549.2)*100 <br> = 1.29%",
+            "opts": "<span><input name='btn' type='radio' id='but1' onclick='any_opt_checked()'> a) 2.32%&emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but2' onclick='any_opt_checked()'> b) 1.24%&emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but3' onclick='any_opt_checked()'> c) 2.54%%&emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but4' onclick='any_opt_checked()'> d) 1.29%<span>"
+        }, {
+            "question": "3) You are given ₹1,50,00,650. After 2 years you pay back ₹1,72,50,747.5. What % of intrest did you pay?",
+            "answer": "<br><br>Answer :- d) 15%.<br> Solution:- <br>Amt given = ₹1,50,00,650 <br> Amt paid back = ₹1,72,50,747 <br> Percentage = (Amt paid more/Amt given)*100 <br> = (₹22,50,097/₹1,50,00,650)*100<br> = 15%",
+            "opts": " <span><input name='btn' type='radio' id='but1' onclick='any_opt_checked()'> a) 15.4% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but2' onclick='any_opt_checked()'> b) 16% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but3' onclick='any_opt_checked()'> c) 14% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but4' onclick='any_opt_checked()'> d) 15% <span>"
+        }, {
+            "question": "4) You are a collage student and you write your GRE exam. You get 450/680. Find your percentage.",
+            "answer": "<br><br>Answer :- c) 66.18%<br> Solution:- percentage = (450/680)*100%<br>= 66.18%",
+            "opts": " <span><input name='btn' type='radio'id='but1' onclick='any_opt_checked()'> a) 65.98% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but2' onclick='any_opt_checked()'> b) 66.54% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but3' onclick='any_opt_checked()'> c) 66.18% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but4' onclick='any_opt_checked()'> d) 66.12%<span> "
+        }, {
+            "question": "5) A batsman scored 110 runs which included 3 boundaries and 8 sixes.<br>What percent of his total score did he make by running between the wickets ",
+            "answer": "<br><br>Answer :- b) 45 5/11%<br> Solution:- runs scored by boundaries and sixes = (3*4) + (8*6)<br>= 12 + 48<br>= 60<br>percentage scored by running between wickets = [(110-60)/110]*100<br>= [50/110]*100<br>= 500/11<br>= 45 5/11<br>ans:-45 5/11%",
+            "opts": " <span><input name='btn' type='radio'id='but1' onclick='any_opt_checked()'> a) 45 9/11% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but2' onclick='any_opt_checked()'> b) 45 5/11% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but3' onclick='any_opt_checked()'> c) 45 7/11% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but4' onclick='any_opt_checked()'> d) 45 1/11% <span>"
+        }, {
+            "question": "6) Two students appeared at an examination.<br>One of them secured 9 marks more than the other and his marks was 56% of the sum of their marks.<br>The marks obtained by them are:-",
+            "answer": "<br><br>Answer :- a) 42 and 33<br> Solution:- let x be the mark who scored less<br>56/100 * x+x+9 = x+9<br>14/25*x+x+9=x+9<br>14(x+x+9)=25(x+9)<br>28x+126 = 25x+225<br>28x-25x = 225-126<br>3x = 99<br>x = 99/3<br>x = 33<br>Therefore the students marks are 42 and 33",
+            "opts": " <span><input name='btn' type='radio'id='but1' onclick='any_opt_checked()'> a) 42 and 33 &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but2' onclick='any_opt_checked()'> b) 30 and 39 &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but3' onclick='any_opt_checked()'> c) 42 and 51 &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but4' onclick='any_opt_checked()'> d) 21 and 30 <span>"
+        }, {
+            "question": "7) A man bought an car for rupees 95460 and sold it for 105460<br>Another man bought a car for 160000 and sold it for 170000<br>Whose gain % is more and by how much?",
+            "answer": "<br><br>Answer :- d) first man's , 4.25% <br> Solution:- <br>Gain % of first man = [(105460-95460)/95460]*100%<br>= [10000/95460]*100%<br>= 10.5%<br>Gain % of second man = [(170000-160000)/160000]*100%<br>= [10000/160000]*100%<br>= 6.25%<br>Therefore the first man's gain% is more and by 4.25%<span>",
+            "opts": " <span><input name='btn' type='radio'id='but1' onclick='any_opt_checked()'> a) first man's, 6.5% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but2' onclick='any_opt_checked()'> b) first man's, 6.5% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but3' onclick='any_opt_checked()'> c) second man's, 1.25% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but4' onclick='any_opt_checked()'> d) first man's , 4.25% <span>"
+        }, {
+            "question": "8) In a certain school, 20% of students are below 8 years of age.<br>The number of students above 8 years of age is 2/3 of the number of students of 8 years of age which is 48.<br>What is the total number of students in the school?",
+            "answer": "<br><br>Answer :- b)100 <br> Solution:- <br>No of students <8 years = 20%<br>No of students = 8 years = 48<br>No of students >8 years = (2/3)*48<br>No of students >=8 years = 48+ 32<br>= 80<br>since 80% = 80 students<br>the rest 20% are 20 students<br>Therefore the total number of students are 80+20<br>=100<span>",
+            "opts": " <span><input name='btn' type='radio'id='but1' onclick='any_opt_checked()'>120 a) &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but2' onclick='any_opt_checked()'> b) 100 &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but3' onclick='any_opt_checked()'> c) 96 &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but4' onclick='any_opt_checked()'> d) 136 <span>"
+        }, {
+            "question": "9) In an election between two candidates, one got 55% of the total valid votes, 20% of the votes were invalid.<br>If the total number of votes was 7500, the number of valid votes that the other candidate got, was ?",
+            "answer": "<br><br>Answer :- a)2700<br> Solution:- <br> Total no of valid votes = (80/100)*7,500<br>= 6,00,000/100<br>= 6,000<br>Votes first candidate got = (55/100)*6,000<br>= 3,300 votes<br>Votes second candidate got = 6,000-3,300<br>= 2,700",
+            "opts": " <span><input name='btn' type='radio'id='but1' onclick='any_opt_checked()'> a) 2,700 &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but2' onclick='any_opt_checked()'> b) 2900 &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but3' onclick='any_opt_checked()'> c) 3000 &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but4' onclick='any_opt_checked()'> d) 3100 <span>"
+        }, {
+            "question": "10) The population of a town increased from 1,75,000 to 2,62,500 in a decade.<br>The average percent increase of population per year is ?",
+            "answer": "<br><br>Answer :- c) 15% <br> Solution:- <br> Average increase = (2,62,500-1,75,000)/10<br>= 87,500/10<br>= 8750 per year<br>Average increase % = (8750/1,75,000)*100<br>= 0.05*100<br>= 5%",
+            "opts": " <span><input name='btn' type='radio'id='but1' onclick='any_opt_checked()'> a) 6% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but2' onclick='any_opt_checked()'> b) 4% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but3' onclick='any_opt_checked()'> c) 5% &emsp;&emsp;</span><br><span><input name='btn' type='radio' id='but4' onclick='any_opt_checked()'> d) 7% <span>"
+        },{ /*add "QAO's" before this with a comma... i hope u understood..*/ 
+            "question": "no more"
+        },]
+    </script>
+    <!-- <script>
+
+        //go to next question and change question-button colour
+        function next(){
+            crq = currenquestion.toString()
+            if (document.getElementById(crq).style.backgroundColor == "rgb(0, 200, 0)"){
+                document.getElementById(crq).style.backgroundColor = "#fcfdff";
+            }
+            else if(document.getElementById(crq).style.backgroundColor == "rgb(255, 166, 0)"){
+                alert("question already flagged.... no change in background-colour")
+            }
+            else{
+                document.getElementById(crq).style.backgroundColor = "rgb(0, 200, 0)"
+            }
+        }
+        //variable to see if a question is flagged
+        //change colour on flagged
+        
+        function flag(){
+            crq = currenquestion.toString()
+            if (document.getElementById(crq).style.backgroundColor == "rgb(255, 166, 0)"){
+                document.getElementById(crq).style.backgroundColor = "#fcfdff";
+            }
+            else{
+                document.getElementById(crq).style.backgroundColor = "#ffa600"
+            }
+        }
+            currenquestion = 0
+
+        // writing the next question
+        function nextquestion() {
+            
+            document.getElementById('question').innerHTML = qao[currenquestion].question
+            document.getElementById('opts').innerHTML = qao[currenquestion].opts
+            currenquestion += 1
+        }
+            
+        
+        
+
+        //go to 1st question via button
+        function one() {
+            currenquestion = 0
+            document.getElementById('question').innerHTML = qao[0].question
+            document.getElementById('opts').innerHTML = qao[0].opts
+            crq = toString(currenquestion)
+        }
+
+        //go to 2nd question via button
+        function two() {
+            currenquestion = 1
+            document.getElementById('question').innerHTML = qao[1].question
+            document.getElementById('opts').innerHTML = qao[1].opts
+            crq = toString(currenquestion)
+        }
+
+        // go to 3rd question via button
+        function three(){
+            currenquestion = 2
+            document.getElementById('question').innerHTML = qao[2].question
+            document.getElementById('opts').innerHTML = qao[2].opts
+            crq = toString(currenquestion)
+        }
+
+        // go to 4th question via button
+        function four(){
+            currenquestion = 3
+            document.getElementById('question').innerHTML = qao[3].question
+            document.getElementById('opts').innerHTML = qao[3].opts
+            crq = toString(currenquestion)
+        }
+
+        // go to 5th question via button
+        function five(){
+            currenquestion = 4
+            document.getElementById('question').innerHTML = qao[4].question
+            document.getElementById('opts').innerHTML = qao[4].opts
+            crq = toString(currenquestion)
+        }
+
+        // go to 6th question via button
+        function six(){
+            currenquestion = 5
+            document.getElementById('question').innerHTML = qao[5].question
+            document.getElementById('opts').innerHTML = qao[5].opts
+            crq = toString(currenquestion)
+        }
+
+        // go to 7th question via button
+        function seven(){
+            currenquestion = 6
+            document.getElementById('question').innerHTML = qao[6].question
+            document.getElementById('opts').innerHTML = qao[6].opts
+            crq = toString(currenquestion)
+        }
+
+        // go to 8th question via button
+        function eight(){
+            currenquestion = 7
+            document.getElementById('question').innerHTML = qao[7].question
+            document.getElementById('opts').innerHTML = qao[7].opts
+            crq = toString(currenquestion)
+        }
+
+        // go to 9th question via button
+        function nine(){
+            currenquestion = 8
+            document.getElementById('question').innerHTML = qao[8].question
+            document.getElementById('opts').innerHTML = qao[8].opts
+            crq = toString(currenquestion)
+        }
+
+        // go to 10th question via button
+        function ten(){
+            currenquestion = 9
+            document.getElementById('question').innerHTML = qao[9].question
+            document.getElementById('opts').innerHTML = qao[9].opts
+            crq = toString(currenquestion)
+        }
+
+        // go to 11th question via button
+        function back(){
+            document.getElementById('question').innerHTML = "Question will be displayed here"
+            document.getElementById('opts').innerHTML = "opts will be displayed here"
+        }
+        
+        // questions
+        var qao = [
+            {
+            "question": "1) The capacity of a tank is 84 litres and it takes 7 hours to fill. If the valve is closed after 4.5 hours, what % of the tank is filled?",
+            "answer": "<br><br>Answer :- a) 64.29%.<br> Solution:- <br> Speed of water = Capacity/Time = 84/7 = 12L/h <br> therefore water filled = 12*4.5 = 54L.<br> percentage filled = (54/84)*100 = 64.29%",
+            "opts": "<span><input name='btn' type='radio' id='but1'> a) 64.29 &emsp;&emsp;</span> <span><input name='btn' type='radio' id='but2'> b) 63.65% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but3'> c) 65.80% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but4'> d) 60.93%<span> "
+        }, {
+            "question": "2) Ramesh is a real estate agent. He bought a land for ₹68741520. The registration fees is 7%, brokerage is 1.5%.  If Ramesh is selling the land for ₹69951520 and recieves a brokerage of 8%, what is his profit/loss %",
+            "answer": "<br><br>Answer :- d) 1.29%.<br> Solution:-  <br> Registration = ₹48,11,906.4 <br> Brokerage = ₹10,31,122.8 <br> Total cost = ₹7,45,84,549.2 <br> <br> Selling price = ₹6,99,51,520 + 55,96,121.6 <br> &emsp;&emsp;&emsp;&emsp;&emsp; = 7,55,47,641.6 <br><br> S.P > C.P, there is profit<br>Profit% = (profit/cp)*100 <br> = (9,63,092.4/7,45,84,549.2)*100 <br> = 1.29%",
+            "opts": "<span><input name='btn' type='radio' id='but1'> a) 2.32%&emsp;&emsp;</span><span><input name='btn' type='radio' id='but2'> b) 1.24%&emsp;&emsp;</span><span><input name='btn' type='radio' id='but3'> c) 2.54%%&emsp;&emsp;</span><span><input name='btn' type='radio' id='but4'> d) 1.29%<span>"
+        }, {
+            "question": "3) You are given ₹1,50,00,650. After 2 years you pay back ₹1,72,50,747.5. What % of intrest did you pay?",
+            "answer": "<br><br>Answer :- d) 15%.<br> Solution:- <br>Amt given = ₹1,50,00,650 <br> Amt paid back = ₹1,72,50,747 <br> Percentage = (Amt paid more/Amt given)*100 <br> = (₹22,50,097/₹1,50,00,650)*100<br> = 15%",
+            "opts": " <span><input name='btn' type='radio' id='but1'> a) 15.4% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but2'> b) 16% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but3'> c) 14% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but4'> d) 15% <span>"
+        }, {
+            "question": "4) You are a collage student and you write your GRE exam. You get 450/680. Find your percentage.",
+            "answer": "<br><br>Answer :- c) 66.18%<br> Solution:- percentage = (450/680)*100%<br>= 66.18%",
+            "opts": " <span><input name='btn' type='radio'id='but1'> a) 65.98% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but2'> b) 66.54% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but3'> c) 66.18% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but4'> d) 66.12%<span> "
+        }, {
+            "question": "5) A batsman scored 110 runs which included 3 boundaries and 8 sixes.<br>What percent of his total score did he make by running between the wickets ",
+            "answer": "<br><br>Answer :- b) 45 5/11%<br> Solution:- runs scored by boundaries and sixes = (3*4) + (8*6)<br>= 12 + 48<br>= 60<br>percentage scored by running between wickets = [(110-60)/110]*100<br>= [50/110]*100<br>= 500/11<br>= 45 5/11<br>ans:-45 5/11%",
+            "opts": " <span><input name='btn' type='radio'id='but1'> a) 45 9/11% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but2'> b) 45 5/11% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but3'> c) 45 7/11% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but4'> d) 45 1/11% <span>"
+        }, {
+            "question": "6) Two students appeared at an examination.<br>One of them secured 9 marks more than the other and his marks was 56% of the sum of their marks.<br>The marks obtained by them are:-",
+            "answer": "<br><br>Answer :- a) 42 and 33<br> Solution:- let x be the mark who scored less<br>56/100 * x+x+9 = x+9<br>14/25*x+x+9=x+9<br>14(x+x+9)=25(x+9)<br>28x+126 = 25x+225<br>28x-25x = 225-126<br>3x = 99<br>x = 99/3<br>x = 33<br>Therefore the students marks are 42 and 33",
+            "opts": " <span><input name='btn' type='radio'id='but1'> a) 42 and 33 &emsp;&emsp;</span><span><input name='btn' type='radio' id='but2'> b) 30 and 39 &emsp;&emsp;</span><span><input name='btn' type='radio' id='but3'> c) 42 and 51 &emsp;&emsp;</span><span><input name='btn' type='radio' id='but4'> d) 21 and 30 <span>"
+        }, {
+            "question": "7) A man bought an car for rupees 95460 and sold it for 105460<br>Another man bought a car for 160000 and sold it for 170000<br>Whose gain % is more and by how much?",
+            "answer": "<br><br>Answer :- d) first man's , 4.25% <br> Solution:- <br>Gain % of first man = [(105460-95460)/95460]*100%<br>= [10000/95460]*100%<br>= 10.5%<br>Gain % of second man = [(170000-160000)/160000]*100%<br>= [10000/160000]*100%<br>= 6.25%<br>Therefore the first man's gain% is more and by 4.25%<span>",
+            "opts": " <span><input name='btn' type='radio'id='but1'> a) first man's, 6.5% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but2'> b) first man's, 6.5% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but3'> c) second man's, 1.25% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but4'> d) first man's , 4.25% <span>"
+        }, {
+            "question": "8) In a certain school, 20% of students are below 8 years of age.<br>The number of students above 8 years of age is 2/3 of the number of students of 8 years of age which is 48.<br>What is the total number of students in the school?",
+            "answer": "<br><br>Answer :- b)100 <br> Solution:- <br>No of students <8 years = 20%<br>No of students = 8 years = 48<br>No of students >8 years = (2/3)*48<br>No of students >=8 years = 48+ 32<br>= 80<br>since 80% = 80 students<br>the rest 20% are 20 students<br>Therefore the total number of students are 80+20<br>=100<span>",
+            "opts": " <span><input name='btn' type='radio'id='but1'>120 a) &emsp;&emsp;</span><span><input name='btn' type='radio' id='but2'> b) 100 &emsp;&emsp;</span><span><input name='btn' type='radio' id='but3'> c) 96 &emsp;&emsp;</span><span><input name='btn' type='radio' id='but4'> d) 136 <span>"
+        }, {
+            "question": "9) In an election between two candidates, one got 55% of the total valid votes, 20% of the votes were invalid.<br>If the total number of votes was 7500, the number of valid votes that the other candidate got, was ?",
+            "answer": "<br><br>Answer :- a)2700<br> Solution:- <br> Total no of valid votes = (80/100)*7,500<br>= 6,00,000/100<br>= 6,000<br>Votes first candidate got = (55/100)*6,000<br>= 3,300 votes<br>Votes second candidate got = 6,000-3,300<br>= 2,700",
+            "opts": " <span><input name='btn' type='radio'id='but1'> a) 2,700 &emsp;&emsp;</span><span><input name='btn' type='radio' id='but2'> b) 2900 &emsp;&emsp;</span><span><input name='btn' type='radio' id='but3'> c) 3000 &emsp;&emsp;</span><span><input name='btn' type='radio' id='but4'> d) 3100 <span>"
+        }, {
+            "question": "10) The population of a town increased from 1,75,000 to 2,62,500 in a decade.<br>The average percent increase of population per year is ?",
+            "answer": "<br><br>Answer :- c) 15% <br> Solution:- <br> Average increase = (2,62,500-1,75,000)/10<br>= 87,500/10<br>= 8750 per year<br>Average increase % = (8750/1,75,000)*100<br>= 0.05*100<br>= 5%",
+            "opts": " <span><input name='btn' type='radio'id='but1'> a) 6% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but2'> b) 4% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but3'> c) 5% &emsp;&emsp;</span><span><input name='btn' type='radio' id='but4'> d) 7% <span>"
+        } /*add "QAO's" before this with a comma... i hope u understood..*/ , {
+            "question": "no more"
+        }]
+    </script> -->
+</body>
+</html>
